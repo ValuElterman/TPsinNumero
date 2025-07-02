@@ -14,7 +14,7 @@ public class Integrantes
     public string barrio {get; set;}
     public bool mascota {get; set;}
     public string hobbie {get; set;}
-}
+
 
 public Integrantes (int IdIntegrante, string nombre, string password, string apellido, int telefono, string barrio, bool mascota, string hobbie)
 {
@@ -28,7 +28,22 @@ public Integrantes (int IdIntegrante, string nombre, string password, string ape
     this.hobbie = hobbie;
 }
 
-public List<Integrantes> AgregarIntegrantes(Integrantes inte)
+public void CrearIntegrantes(Integrantes inte)
 {
-    string query = "INSERT INTO Integrantes () VALUES ()";
+    string query = "INSERT INTO Integrantes (IdIntegrante, nombre, password, apellido, telefono, barrio, mascota, hobbie) VALUES (@pIdIntegrante, @pnombre, @ppassword, @papellido, @ptelefono, @pbarrio, @pmascota, @phobbie )";
+    using(SqlConnection connection = new SqlConnection(_connectionString))
+    {
+        connection.Execute(query, new {pIdIntegrante = inte.IdIntegrante, pnombre = inte.nombre, ppassword = inte.password, papellido = inte.apellido, ptelefono = inte.telefono, pbarrio = inte.barrio, pmascota = inte.mascota, phobbie = inte.hobbie});
+    }
+}
+
+public List<Integrantes> AgregarIntegrantes()
+{
+    List<Integrantes> integrantes = new List<Integrantes>();
+    using(SqlConnection connection = new SqlConnection(_connectionString))
+    {
+        string query = "SELECT * FROM Integrantes";
+        integrantes = connection.Query<Integrantes>(query).ToList();
+    }
+}
 }
