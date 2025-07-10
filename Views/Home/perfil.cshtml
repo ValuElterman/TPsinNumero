@@ -1,0 +1,15 @@
+<h1>¡Bienvenido a tu perfil, @usuario.nombre! 😀</h1>
+@if (usuario != null)
+{
+    <div>
+        <h2>Información Personal</h2>
+        <p><strong>ID:</strong> @usuario.IdIntegrante</p>
+        <p><strong>Nombre:</strong> @usuario.nombre</p>
+        <p><strong>Apellido:</strong> @usuario.apellido</p>
+        <p><strong>Teléfono:</strong> @usuario.telefono</p>
+        <p><strong>Barrio:</strong> @usuario.barrio</p>
+        <p><strong>Mascota:</strong> @(usuario.mascota ? "Sí" : "No")</p> @* Muestra "Sí" o "No" para el booleano *@
+        <p><strong>Hobbie:</strong> @usuario.hobbie</p>
+        @* <p><strong>Contraseña:</strong> @usuario.password</p> *@
+    </div>
+}

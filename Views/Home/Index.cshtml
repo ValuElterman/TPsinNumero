@@ -5,8 +5,14 @@
 <div>
     <p>Bienvenidos al sitio web de presentación de los integrantes del equipo AVA</p>
     <h2>INICIE SESION: </h2>
-    <form action='@url.Action("GuardarIngreso", "Home")' method="POST" enctyoe="multipart/form-data">
+    <form action='Url.Action("GuardarIngreso", "HomeController")' method="POST" enctype="multipart/form-data">
     <input type="text" name="nombre"/>
     <input type="password" mame="contraseña"/>
     <input type="submit" value="Guardar"/>
 </div>
+
+@{if(@ViewBag.no)
+{
+    <p>ERROR, no existis</p>
+}
+}

@@ -1,21 +1,31 @@
 using Microsoft.Data.SqlClient;
 using Dapper;
+using Newtonsoft.Json;
 
 namespace TPsinNumero.Models;
 
 public class Integrantes
 {
-    private static string _connectionString = @"Server=localhost; DataBase=TPnoNum; Integrated Security=True; TrustServerCertificate=True;";
-    public int IdIntegrante {get; set;}
+     [JsonProperty]
+     private static string _connectionString = @"Server=localhost; DataBase=TPnoNum; Integrated Security=True; TrustServerCertificate=True;";
+     [JsonProperty]
+     public int IdIntegrante {get; set;}
+    [JsonProperty] 
     public string nombre {get; set;}
-    public string password {get; set;}
-    public string apellido {get; set;}
-    public int telefono {get; set;}
-    public string barrio {get; set;}
-    public bool mascota {get; set;}
-    public string hobbie {get; set;}
+     [JsonProperty]
+     public string password {get; set;}
+     [JsonProperty]
+     public string apellido {get; set;}
+     [JsonProperty]
+     public int telefono {get; set;}
+     [JsonProperty]
+     public string barrio {get; set;}
+     [JsonProperty]
+     public bool mascota {get; set;}
+     [JsonProperty]
+     public string hobbie {get; set;}
 
-
+public Integrantes() { }
 public Integrantes (int IdIntegrante, string nombre, string password, string apellido, int telefono, string barrio, bool mascota, string hobbie)
 {
     this.IdIntegrante = IdIntegrante;
@@ -28,16 +38,18 @@ public Integrantes (int IdIntegrante, string nombre, string password, string ape
     this.hobbie = hobbie;
 }
 
-public void CrearIntegrantes(Integrantes inte)
+public Integrantes VerificarIntegrantes(string nombreUsuario, string contraseña)
 {
-    string query = "INSERT INTO Integrantes (IdIntegrante, nombre, password, apellido, telefono, barrio, mascota, hobbie) VALUES (@pIdIntegrante, @pnombre, @ppassword, @papellido, @ptelefono, @pbarrio, @pmascota, @phobbie )";
+    Integrantes integrante = null;
     using(SqlConnection connection = new SqlConnection(_connectionString))
     {
-        connection.Execute(query, new {pIdIntegrante = inte.IdIntegrante, pnombre = inte.nombre, ppassword = inte.password, papellido = inte.apellido, ptelefono = inte.telefono, pbarrio = inte.barrio, pmascota = inte.mascota, phobbie = inte.hobbie});
+        string query = "SELECT * FROM Integrantes WHERE password = @pPassword AND nombre = @pNombre";
+        integrante = connection.QueryFirstOrDefault<Integrantes>(query, new {pNombre = nombreUsuario, pPassword = contraseña});
     }
+    return integrante;
 }
 
-public List<Integrantes> AgregarIntegrantes()
+public List<Integrantes> AgregarIntegrantesALista()
 {
     List<Integrantes> integrantes = new List<Integrantes>();
     using(SqlConnection connection = new SqlConnection(_connectionString))
@@ -45,5 +57,6 @@ public List<Integrantes> AgregarIntegrantes()
         string query = "SELECT * FROM Integrantes";
         integrantes = connection.Query<Integrantes>(query).ToList();
     }
+    return integrantes;
 }
 }
