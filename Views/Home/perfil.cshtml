@@ -1,15 +1,23 @@
-<h1>¡Bienvenido a tu perfil, @usuario.nombre! 😀</h1>
-@if (usuario != null)
+@using TPsinNumero.Models
+
+<div class = "Index">
+@if (ViewBag.info is Integrantes integrante)
 {
+    <h1>¡Bienvenido a tu perfil, @integrante.nombre! 😀</h1>
     <div>
         <h2>Información Personal</h2>
-        <p><strong>ID:</strong> @usuario.IdIntegrante</p>
-        <p><strong>Nombre:</strong> @usuario.nombre</p>
-        <p><strong>Apellido:</strong> @usuario.apellido</p>
-        <p><strong>Teléfono:</strong> @usuario.telefono</p>
-        <p><strong>Barrio:</strong> @usuario.barrio</p>
-        <p><strong>Mascota:</strong> @(usuario.mascota ? "Sí" : "No")</p> @* Muestra "Sí" o "No" para el booleano *@
-        <p><strong>Hobbie:</strong> @usuario.hobbie</p>
-        @* <p><strong>Contraseña:</strong> @usuario.password</p> *@
+        <p>ID: @integrante.IdIntegrante</p>
+        <p>Nombre: @integrante.nombre</p>
+        <p>Apellido: @integrante.apellido</p>
+        <p>Teléfono: @integrante.telefono</p>
+        <p>Barrio: @integrante.barrio</p>
+        <p>Mascota: @(integrante.mascota ? "Sí" : "No")</p>
+        <p>Hobbie: @integrante.hobbie</p>
     </div>
 }
+else
+{
+    <p>No se pudo cargar la información del perfil. Por favor, inicie sesión nuevamente.</p>
+}
+<p><a href = '@Url.Action("Index", "Home")'>Ir a la página de inicio de sesión</a></p>
+</div>

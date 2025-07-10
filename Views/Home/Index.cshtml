@@ -1,18 +1,13 @@
-﻿@{
+﻿<div class = "Index">
+@{
     ViewData["Title"] = "Index";
 }
 
-<div>
     <p>Bienvenidos al sitio web de presentación de los integrantes del equipo AVA</p>
     <h2>INICIE SESION: </h2>
-    <form action='Url.Action("GuardarIngreso", "HomeController")' method="POST" enctype="multipart/form-data">
-    <input type="text" name="nombre"/>
-    <input type="password" mame="contraseña"/>
+    <form action='@Url.Action("GuardarIngreso", "Home")' method="POST" enctype="multipart/form-data">
+    <input type="text" name="nombre" placeholder="nombre" autocomplete = "off"/>
+    <input type="password" name="contraseña" placeholder="contraseña"/>
     <input type="submit" value="Guardar"/>
+    </form>
 </div>
-
-@{if(@ViewBag.no)
-{
-    <p>ERROR, no existis</p>
-}
-}

@@ -1,3 +1,7 @@
+*{
+  background-color: #dbc699;
+}
+
 html {
   font-size: 14px;
   min-height: 100%;
@@ -14,6 +18,11 @@ body {
   padding: 10px;
 }
 
+.Index
+{
+  height: 250px;
+  margin-bottom: 32%;
+}
 
 footer {
   margin-top: 10px;
