@@ -34,7 +34,7 @@ public class HomeController : Controller
             ViewBag.Error = "Por favor, complete todos los campos.";
             return View();
         }
-        // Crear una instancia temporal para verificar login
+       
         Integrantes integranteTemporal = new Integrantes();
         Integrantes integranteOG = integranteTemporal.VerificarIntegrantes(nombre, contraseña);
 

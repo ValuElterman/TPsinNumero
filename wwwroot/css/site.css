@@ -20,8 +20,31 @@ body {
 
 .Index
 {
+  
   height: 250px;
   margin-bottom: 32%;
+}
+
+.Index h1
+{
+  text-align: center;
+font-size: xx-large;
+}
+
+.Index p
+{
+  text-align: center;
+font-size: larger;
+}
+
+.Index h2
+{
+text-align: center;
+}
+
+.Index form
+{
+margin-left: 39%;
 }
 
 footer {
